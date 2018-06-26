@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <style>
+        .red {
+            background: red;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+        <!--<p v-bind:class="classname">红色的</p>-->
+        <!--<p :class="classname">红色的</p>-->
+        <!--<p :class="{show:state,hide:!state}">红色的</p>-->
+        <!--<p :class="{true:'show',false:'hide'}[state]">红色的</p>-->
+        <!--<p :class="[classname,classname1]">红色的</p>-->
+        <!--<p :class="classall">红色的</p>
+        <div :class="[isActive ? activeClass : '', errorClass]">
+            哈哈
+            </div>-->
+        <!--<p class="{{classname}}">红色的</p>-->
+
+
+        <!--style-->
+
+        <!--<p :style="styleObj">style属性</p>-->
+        <!--<p :style="{background:'red'}">style属性</p>-->
+        <!--<p :style="[styleObj,styleObj1]">style属性</p>-->
+        <p :style="{true:styleObj,false:styleObj1}[state]">热吗</p>
+      </div>
+    
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+            data: {
+                name: "zhangsan",
+                classname: "red",
+                classname1: "show",
+                state: true,
+                activeClass: "activeC",
+                errorClass: "errorC",
+                isActive: true,
+                // classall: this.classname + this.classname1
+
+                styleObj: {
+                    background: "red"
+                },
+                styleObj1: {
+                    color: "#fff"
+                }
+            },
+            computed: {
+                classall: function() {
+                    return this.classname + this.classname1
+                }
+            },
+            methods: {
+                getdata() {
+                    return this.name + "getdata"
+                },
+                fn() {
+                    this.watchdata = this.name + "watch"
+                }
+            }
+
+        })
+        setTimeout(function() {
+            vm.nickname = "haha"
+        }, 1000)
+    </script>
+</body>
+
+</html>

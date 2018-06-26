@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            background: lightblue
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+         
+        <input-tt></input-tt>
+        <input-td></input-td>
+      </div>
+    </template>
+    <template id="compA">
+        <div>
+            <button type="" @click="fn">点击</button>
+        </div>
+    </template>
+    <template id="compB">
+        <div>
+             {{childData}}
+        </div>
+    </template>
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var bus = new Vue()
+
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+
+
+            },
+            mounted() {
+                bus.$on("toup", function(val) {
+                    console.log(val)
+                        // _this.childData = val
+                })
+            },
+            components: {
+                inputTt: {
+                    template: "#compA",
+                    data: function() {
+                        return {
+                            msgChild: 2
+                        }
+                    },
+                    methods: {
+                        fn() {
+                            bus.$emit("toup", this.msgChild)
+                        }
+                    },
+                    mounted() {
+
+                    }
+
+                },
+                inputTd: {
+                    template: "#compB",
+                    data: function() {
+                        return {
+                            childData: null
+                        }
+                    },
+
+                    mounted() {
+                        var _this = this
+                        bus.$on("toup", function(val) {
+                            // console.log(val)
+                            _this.childData = val
+                        })
+                    }
+
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

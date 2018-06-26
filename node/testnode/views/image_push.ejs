@@ -1,0 +1,75 @@
+<% include('common/header') %>
+<div style="margin :0px auto; width:300px;">
+ 		<p>图片预览与上传服务器————node接受</p>
+		<!-- accept定义文件的类型 -->
+		<input type="file"  name="file" id="doc" multiple="multiple"  style="width:150px;" accept="image/*">		
+		<img src="" alt="" id="img_head">
+		<p >上传进度为：<label id="process1"></label></p>
+		<p >上传状态为：<label id="status"></label></p>
+		<button id="sub">提交上传</button>
+	</div>
+  <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+  <script>
+     $("#doc").on("change",function(){
+        // alert(2)
+        if (doc.files && doc.files[0]){
+          img_head.style.display = 'block';
+
+              img_head.style.width = '150px';
+
+              img_head.style.height = '180px';
+  
+              img_head.src = window.URL.createObjectURL(doc.files[0]);
+        }
+      })
+$("#sub").click(function(){
+ 		var formData = new FormData();
+            var files = document.getElementById('doc').files;
+            var file = files[0];
+            formData.append('myfile', file);
+            console.log(formData)
+ 		$.ajax({ 
+			url : '/api/imagepush', //用于文件上传的服务器端请求地址 
+			type: "post",
+			data: formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false ,  // tell jQuery not to set contentType
+			
+			success : function(data)//服务器成功响应处理函数 
+			{ 
+				console.log(data)
+				$("#status").html(data)
+			}, 
+			error : function(data, status, e)//服务器响应失败处理函数 
+			{ 
+				alert(e); 
+			} 
+		}) 
+		// process_data()
+ 	})
+ 	
+	var process_data=function(){
+		$.ajax({ 
+			url : '/api/progress', //用于文件上传的服务器端请求地址进度
+			type: "get",
+			cache:false,    
+	   		 // dataType:'json', 
+			success : function(data)//服务器成功响应处理函数 
+			{ 
+				console.log(parseInt(data))
+				$("#process1").html(parseInt(data)+"%")
+				if(parseInt(data) < 100){
+	                // 继续调用
+	                setTimeout("process_data()",100);
+	      }
+			}, 
+			error : function(e)//服务器响应失败处理函数 
+			{ 
+				// console.log(e); 
+			} 
+		}) 
+	}
+  
+
+  </script>
+<% include('common/footer') %>

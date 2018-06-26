@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        if (window.attachEvent) {
+            window.attachEvent('onmessage', function(event) {
+                var getData = JSON.parse(event.data); //将接收的json字符串 转成对象
+                console.log(getData)
+            });
+        } else {
+            window.onmessage = function(event) { //注册message事件
+
+                var getData = JSON.parse(event.data); //将接收的json字符串 转成对象
+                console.log(getData)
+            }
+        }
+    </script>
+
+
+</head>
+
+<body>
+    这是B页面
+    <button type="">获取</button>
+</body>
+
+</html>

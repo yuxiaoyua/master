@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+    <div>
+        <input type="text" v-model="name" v-focus v-if="state">
+    </div>        
+        
+    
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            template: "#tem",
+            data: {
+                name: "",
+                state: true
+            },
+            directives: {
+                focus: {
+                    bind() {
+                        console.log("bind")
+                    },
+                    inserted() {
+                        console.log("inserted")
+                    },
+                    update() {
+                        console.log("update")
+                    },
+                    componentUpdated(el, option, vnode, oldVnode) {
+
+                        console.log("componentUpdated")
+                    },
+                    unbind() {
+                        console.log("unbind")
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

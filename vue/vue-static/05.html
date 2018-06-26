@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <style>
+        .red {
+            background: red;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="tem">
+    <div>
+        <!--<ul>
+            <li v-for="(i,key,index) in obj">{{index}}-{{key}}-{{i}}</li>
+        </ul>
+        <app v-for="i in 3" :num="i"></app>-->
+<!--
+        <ul>
+            <li v-for="(i,index) in list" :key="index">{{i}}</li>
+        </ul>-->
+
+        <ul>
+            <!--<li v-for="i in listfn()">{{i}}</li>-->
+            <li v-for="i in listNew">{{i}}</li>
+        </ul>
+    </div>
+
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var app = Vue.extend({
+            props: ["num"],
+            template: "<p>{{num}}</p>",
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+            components: {
+                "app": app
+            },
+            data: {
+                state: true,
+                state2: false,
+                list: [
+                    1, 2, 3, 4, 5, 6
+                ],
+                listNew: [],
+                obj: {
+                    id: 1,
+                    name: "zhangsan",
+                    addr: "dizhi",
+                    city: "beijing"
+                }
+
+            },
+            computed: {
+                // listNew: function() {
+                //     return this.list.filter(function(i) {
+                //         return i % 2 == 0
+                //     })
+                // }
+            },
+            methods: {
+                listfn() {
+                    return this.list.sort(function() {
+                        return Math.random() > 0.5 ? true : false
+                    })
+                }
+            },
+            watch: {
+                list: function() {
+                    this.listNew = this.list.filter(function(i) {
+                        return i % 2 == 0
+                    })
+                }
+            }
+
+
+        })
+
+        setTimeout(function() {
+            // console.log(vm.$data.list.reverse())
+            // vm.$data.list = vm.$data.list.filter(function(i, index) {
+            //     return i > 3
+            // })
+            Vue.set(vm.list, 3, 10)
+
+        }, 1000)
+    </script>
+</body>
+
+</html>

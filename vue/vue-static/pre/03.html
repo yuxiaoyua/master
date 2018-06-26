@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="tem">
+        <my-awesome-list :items="items">
+            <template slot="item" scope="props">
+                <li class="my-fancy-item">{{ props.text }}</li>
+            </template>
+    </my-awesome-list>
+    </template>
+    <template id="child">
+        <ul>
+            <slot name="item"
+                v-for="item in items"
+                :text="item.text">
+                <!-- 这里写入备用内容 -->
+            </slot>
+        </ul>
+    </template>
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+            components: {
+                "my-awesome-list": {
+                    template: "#child",
+                    data: function() {
+                        return {
+                            items: [{
+                                text: 1
+                            }, {
+                                text: 2
+                            }, {
+                                text: 3
+                            }, {
+                                text: 4
+                            }]
+                        }
+                    },
+                    mounted() {
+                        console.log(this.$root)
+                        console.log(this.$parent == this.$root)
+                        console.log(this.$children)
+                        this.$emit("up", 1)
+                    }
+                }
+            },
+            data: {
+                a: "1"
+            },
+
+            methods: {
+
+            },
+            mounted() {
+
+                console.log(this.$refs[1])
+            },
+            events: {
+                "up": function(data) {
+                    console.log(data)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+       <ul>
+           <li is="comp-a"></li>
+           <li is="comp-a"></li>
+       </ul>
+    </template>
+    <template id="compA">
+        <li>{{msg}} <button type="" @click="fn">点击</button></li>
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+
+
+            },
+            components: {
+                compA: {
+                    template: "#compA",
+                    data: function() {
+                        return {
+                            msg: "天气真好",
+                        }
+                    },
+                    methods: {
+                        fn() {
+                            this.msg = "haha"
+                        }
+                    }
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

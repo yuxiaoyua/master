@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+          <p>{{obj.c}}</p>
+        <p>{{name}}</p>
+        <p>{{nickname}}</p>
+        <p> {{getdata()}}</p>
+        <p>{{watchdata}}</p>
+        <input type="" name="" value="" v-model="search">
+        <button type="" @click="searchfn()">筛选</button>
+        <ul>
+            <li v-for="i in arr">{{i.name}}</li>
+        </ul>
+        <p v-for="i in obj">{{
+                i
+            }}</p>
+      </div>
+     
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+            data: {
+                name: "zhangsan",
+                a: "ha",
+                watchdata: "maliu",
+                namecontent: "haha",
+                namelist: "ab",
+                search: "",
+                list: [{
+                    name: "zhangsan"
+                }, {
+                    name: "lisi"
+                }, {
+                    name: "wangwu"
+                }, {
+                    name: "maliu"
+                }, {
+                    name: "wuzetian"
+                }, ],
+                arr: [],
+                obj: {
+                    a: 1
+                },
+
+                // nickname: "a"
+            },
+            computed: {
+                // getter
+                // nickname: function() {
+                //     return this.name + "nick"
+                // },
+                nickname: {
+                    get: function() {
+                        return this.name + "nick"
+                    },
+                    set: function(news) {
+                        console.log(1234)
+                        this.name = news
+                        this.a = news + "a"
+                    }
+                }
+                // watchdata() {
+                //     return this.name + "watchData"
+                // },
+                // namecontent() {
+                //     return this.name + "namecontent"
+                // },
+                // namelist() {
+                //     return this.name + "namelist"
+                // }
+            },
+            methods: {
+                getdata() {
+                    return this.name + "getdata"
+                },
+                fn() {
+                    this.watchdata = this.name + "watch"
+                },
+                searchfn() {
+                    var _this = this
+                    this.arr = this.list.filter(function(i, index) {
+                        return i.name.indexOf(_this.search) != -1
+                    })
+                    console.log(this.arr)
+                }
+            },
+            watch: {
+                // name: function() {
+                //     this.fn()
+                //     this.watchdata = this.name + "watch"
+                // }
+            },
+            mounted() {
+                this.searchfn()
+            }
+        })
+
+        setTimeout(function() {
+            // vm.watchdata = "nihao"
+            // vm.nickname = "haha"
+            // vm.$set(vm.obj, "c", 2)
+            vm.obj.c = 2
+
+        }, 1000)
+    </script>
+</body>
+
+</html>

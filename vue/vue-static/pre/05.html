@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+      <tree-Folder></tree-Folder>
+       
+    </template>
+    <template id="tree-folder">
+         <p>
+            <span>{{ folder.name }}</span>
+            <tree-folder-contents :children="folder.children"/>
+        </p>
+    </template>
+    <template id="tree-folder-contents">
+        <ul>
+            <li v-for="child in children">
+                <tree-folder v-if="child.children" :folder="child"/>
+                <span v-else>{{ child.name }}</span>
+            </li>
+        </ul>
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#root",
+            components: {
+                treeFolder: {
+                    template: "#tree-folder",
+                    props: ["folder"],
+                    data: function() {
+                        return {
+                            folder: {
+                                name: "zhangsan",
+                                children: "haizi"
+                            }
+                        }
+                    },
+                    beforeCreated() {
+
+                    }
+
+                },
+                treeFolderContents: {
+                    template: "#tree-folder-contents",
+                    props: ["children"]
+                }
+            },
+            data: {
+                componentId: "appa"
+            },
+
+            methods: {
+                fn() {
+                    this.componentId = "appb"
+                }
+            },
+            mounted() {
+
+
+            },
+
+        })
+    </script>
+</body>
+
+</html>

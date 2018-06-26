@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <div id="app2">
+
+    </div>
+    <template id="tem">
+        <div>
+            <comp-a></comp-a>
+            <comp-a></comp-a>
+
+        </div>
+    </template>
+    <template id="tem2">
+        <div>
+            <comp-a></comp-a>
+        
+            <comp-b></comp-b>
+        </div>
+    </template>
+    <template id="compA">
+        <div>
+            这里是组件a
+        </div>
+    </template>
+    <template id="compB">
+        <div>
+            这里是组件b
+        </div>
+    </template>
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var compa = Vue.extend({
+            template: "#compA",
+            data: function() {
+                return {
+                    a: 1
+                }
+            }
+        })
+        Vue.component("comp-a", compa)
+        Vue.component("comp-b", {
+            template: "#compB",
+            data: function() {
+                return {
+                    a: 1
+                }
+            }
+        })
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+                name: "",
+
+            },
+
+            methods: {
+
+            },
+            mounted() {
+
+            }
+
+        })
+        var vm2 = new Vue({
+            el: "#app2",
+
+            template: "#tem2",
+
+            data: {
+                name: "",
+
+            },
+
+            methods: {
+
+            },
+            mounted() {
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>

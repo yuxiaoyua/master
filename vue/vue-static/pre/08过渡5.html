@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <style>
+        .animations-enter-active,
+        .animations-leave-active {
+            animation: bounce 1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+       <div>
+           <button type="" @click="fn">点击</button>
+           <!--<transition
+  
+    enter-active-class="animated bounce"
+    leave-active-class="animated bounce"
+  >
+                <p v-if="state">天气真好</p>
+           </transition>-->
+           
+           <transition name="animations">
+              
+                    <p v-if="state">天气真好</p>
+              
+           
+           </transition>
+       </div>
+     
+    </template>
+
+
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            template: "#root",
+            data: {
+
+                state: true
+            },
+
+            methods: {
+                fn() {
+                    this.state = !this.state
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

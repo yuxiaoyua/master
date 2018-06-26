@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <router-link to="comp1" tag="p">组件一</router-link>
+        <!--<router-link :to="{path:'/comp2',query:{id:1}}">组件二</router-link>-->
+        <router-link :to="{name:'comp2',params:{id:1}}">组件二</router-link>
+        <router-link :to="{name:'comp3'}">组件三</router-link>
+        <router-view></router-view>
+    </div>
+
+
+
+    <script src="js/common/vue2.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <script>
+        var comp1 = {
+            template: "<div>组件1</div>"
+        }
+        var comp2 = {
+
+            template: "<div>组件2</div>",
+            mounted() {
+                console.log(this.$route)
+
+                // this.$router.replace({
+                //     name: 'comp3'
+                // })
+                // this.$router.addRoutes([{
+                //     path: "/comp5",
+                //     component: comp2
+
+                // }])
+                this.$router.go(1)
+                console.log(this.$router)
+            }
+        }
+        var comp3 = {
+
+            template: "<div>组件3</div>"
+        }
+        var router = new VueRouter({
+            linkActiveClass: "a",
+            routes: [{
+                path: "/comp1",
+                component: comp1
+            }, {
+                name: "comp2",
+                path: "/comp2",
+                component: comp2
+            }, {
+                name: "comp3",
+                path: "/comp3",
+                component: comp3
+            }]
+        })
+        var vm = new Vue({
+            el: "#app",
+            router
+        })
+    </script>
+</body>
+
+</html>

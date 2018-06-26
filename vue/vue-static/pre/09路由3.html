@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <router-link to="/comp1/c">第一</router-link>
+        <router-link to="/comp1/a">第二</router-link>
+        <router-link to="/comp1/b">第三</router-link>
+
+        <router-view></router-view>
+    </div>
+
+
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var comp1 = {
+            template: "<div>这里是第一个路由</div>",
+            watch: {
+                $route(to, from) {
+                    console.log(to.params)
+                }
+            }
+        }
+
+        var router = new VueRouter({
+            linkActiveClass: "a",
+            routes: [{
+                path: "/comp1/:id",
+                component: comp1
+            }]
+        })
+        var vm = new Vue({
+            el: "#app",
+            router
+
+        })
+    </script>
+</body>
+
+</html>

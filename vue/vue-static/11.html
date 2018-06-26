@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+         <comp-a :keydata="msg" key-validate="2"></comp-a> 
+         <button @click="fn">点击</button>
+      </div>
+    </template>
+    <template id="compA">
+        <div>
+            <p>{{msg}}</p>
+       <p>{{keyVal}}</p>
+       <p>{{keyValidate}}</p>
+        </div>
+       
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+                msg: 1
+            },
+            methods: {
+                fn() {
+                    this.msg = "后期改变"
+                }
+            },
+            components: {
+                compA: {
+                    // props: ["keydata"],
+                    props: {
+                        keydata: {
+                            type: [String, Number],
+                            default: 0
+                        },
+                        keyVal: {
+                            // required: true,
+                            default: 1
+                        },
+                        keyValidate: {
+                            validator: function(val) {
+                                console.log(val)
+                                return val >= 2
+                            }
+                        }
+                    },
+                    template: "#compA",
+                    data: function() {
+                        return {
+                            // msg: this.keydata,
+                            // msg: null,
+                        }
+                    },
+                    // created() {
+                    //     this.msg = this.keydata
+                    // },
+                    computed: {
+                        msg: function() {
+                            return this.keydata
+                        }
+                    },
+                    methods: {
+                        // fn() {
+                        //     this.msg = "haha"
+                        // }
+                    },
+                    mounted() {
+                        // this.msg = "哈哈"
+                        console.log(this.msg)
+
+                    }
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

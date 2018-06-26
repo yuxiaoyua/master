@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="tem">
+    <div>
+        <input type="" name="" v-model="name" @keyup="fn">
+        <textarea rows="" cols="" v-model="textar"></textarea>
+        <!--<input type="checkbox" v-model="check">
+        {{check}}-->
+        <!--<p>请选择符合的元素</p>
+        <input type="checkbox" id="a" value="a" v-model="list">
+        <label for="a"></label>
+        <input type="checkbox" id="b" value="b" v-model="list">
+        <label for="b"></label>
+        <input type="checkbox" id="c" value="c" v-model="list">
+        <label for="c"></label>
+        {{list}}-->
+        <!--<div>
+            <section>
+                <input type="radio" value="One" v-model="single">
+                <label for="one">男</label>
+            </section>
+            <section>
+                <input type="radio" value="One" v-model="single">
+                <label for="one"></label>
+            </section>
+        </div>-->
+        <!--<input type="radio" value="One" v-model="single">
+        <input type="radio" value="Two" v-model="single">
+        {{single}}-->
+
+        <!--<div id="example-5">
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        </div>-->
+
+        <!--<div id="example-6">
+            <select v-model="selected" multiple style="width: 50px;height:30px">
+                <option value="Aa">A</option>
+                <option value="BB">B</option>
+                <option value="CC">C</option>
+            </select>
+            <br>
+            <span>Selected: {{ selected }}</span>
+            </div>-->
+<!--
+        <input type="checkbox" :checked="state=='a'">
+        <input type="checkbox" :checked="state=='b'">-->
+        <p>获取值</p>
+        <!--<input type="checkbox" v-model="toggle" v-bind:true-value="a"  v-bind:false-value="b" @click="seefn()">-->
+        <!--<input type="checkbox" v-model="toggle" @click="seefn()">-->
+        <!--<input type="text" v-model.lazy="content" @keyup="blurfn">-->
+        <!--<input type="text" v-model.number.lazy="content" @keyup.enter="blurfn">-->
+        <input type="text" v-model.trim.lazy="content" @keyup.enter="blurfn">
+    </div>
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+
+            data: {
+                name: "",
+                textar: "",
+                check: "",
+                list: [],
+                single: "",
+                selected: [],
+                state: 'b',
+                toggle: "",
+                a: "1",
+                b: "2",
+                content: ""
+            },
+
+            methods: {
+                fn() {
+                    console.log(this.name)
+                },
+                seefn() {
+                    console.log(this.toggle)
+                },
+                blurfn() {
+
+                    console.log(typeof this.content)
+                    console.log(this.content)
+                }
+            },
+            mounted() {
+                console.log(this.name)
+                console.log(this.toggle)
+            }
+
+        })
+    </script>
+</body>
+
+</html>

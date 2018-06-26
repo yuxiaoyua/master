@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            background: lightblue
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+        <input-tt type="number" aa="22" name="oo" id="ss"></input-tt>
+      </div>
+    </template>
+    <template id="compA">
+        <input type="text" name="ee" value="" id="dd">
+       
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+                msg: {
+                    a: 1
+                }
+            },
+            components: {
+                inputTt: {
+
+                    template: "#compA",
+
+                    computed: {
+                        msgChild: {
+                            get: function() {
+                                return this.keydata
+                            },
+                            set: function(val) {
+                                this.keydata = val
+                            }
+                        }
+                    },
+                    methods: {
+                        childFn() {
+                            this.msgChild.a = 2
+                        }
+                    },
+
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

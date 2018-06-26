@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        function postfn() {
+            var $dom = document.getElementById('iframeDom');
+            var targetOrigin = '*';
+            var data = {
+                name: "天气真好"
+            }; //传输name名称
+            var str = JSON.stringify(data); //将json对象 转成json字符串
+            $dom.contentWindow.postMessage(str, targetOrigin);
+        }
+    </script>
+</head>
+
+<body>
+    <button type="" onclick="postfn()">点击传递数据</button>
+
+    <iframe id="iframeDom" src="b.html"></iframe>
+
+</body>
+
+</html>

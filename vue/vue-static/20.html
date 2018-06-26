@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+        <keep-alive>
+            <component :is="state"></component>
+        </keep-alive>
+        
+    </div>
+    </template>
+
+    <template id="slotCont1">
+        <div>天气真好</div>
+    </template>
+    <!--<template id="slotCont2">
+        <div>天气真好2</div>
+    </template>-->
+    <template id="slotCont3">
+        <div>天气真好3</div>
+    </template>
+    <script type="text/x-template" id="slotCont2">
+        <p>Hello hello hello</p>
+    </script>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var bus = new Vue()
+
+        var vm = new Vue({
+                el: "#app",
+
+                template: "#tem",
+
+                data: {
+                    state: "slotCont2"
+                },
+
+                components: {
+                    slotCont1: {
+                        template: "#slotCont1",
+
+                    },
+                    slotCont2: {
+                        template: "#slotCont2",
+
+                    },
+                    slotCont3: {
+                        template: "#slotCont3",
+
+                    },
+
+                }
+
+            })
+            // var vm = new Vue({
+            //     el: "#app2",
+
+        //     template: "#tem2",
+        //     data: {
+
+
+        //     },
+        //     components: {
+        //         slotCont: {
+        //             template: "#slotCont",
+        //             data: function() {
+        //                 return {
+        //                     msgChild: 2
+        //                 }
+        //             }
+
+
+        //         },
+
+        //     }
+
+        // })
+    </script>
+</body>
+
+</html>

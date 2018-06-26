@@ -1,0 +1,84 @@
+//宽高
+@mixin wh($width, $height){
+    width: $width;
+    height: $height;
+}
+//定位上下左右居中
+@mixin center {
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+//定位上下居中
+@mixin ct {
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+}
+
+//定位左右居中
+@mixin cl {
+	position: absolute;
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+//字体大小，颜色
+@mixin sc($size, $color){
+	font-size: $size;
+	color: $color;
+}
+
+// 色调
+$main: #26d644; // 主色
+$minor: #404040; // 次色
+$assist: #fb4e44; // 辅色
+
+// 基础色
+$basic1: #b4b4b4; // 基础色 1
+$basic2: #e0e0e0; // 基础色 2
+$basic3: #f4f4f4; // 基础色 3
+
+// 字体颜色
+$fontColor1: #404040; // 字体颜色 1
+$fontColor2: #666666; // 字体颜色 2
+$fontColor3: #b4b4b4; // 字体颜色 3
+
+// 字体大小
+$fontSize1: 0.52rem;
+$fontSize2: 0.44rem;
+$fontSize3: 0.36rem;
+$fontSize4: 0.32rem;
+$fontSize5: 0.28rem;
+
+// 间距大小
+$spacing1: 0.60rem;
+$spacing2: 0.48rem;
+$spacing3: 0.32rem;
+$spacing4: 0.24rem;
+@mixin fj($type: space-between){
+	display: flex;
+	justify-content: $type;
+}
+
+$sub: #4DD0E1; // 副色
+
+$Warning: #F7BA2A; // 警告
+$Danger: #FF4949; // 错误
+$Success: #13CE66; // 成功
+
+$font1: #324057; // 一级字体颜色
+$font2: #6f7a8a; // 二级字体颜色
+$font3: #99A9BF; // 三级字体颜色
+
+$bg: #F9FAFC; // 背景色
+$cc: #fff; // 内容块颜色
+
+$border1: #e8eaec; // 一级边框颜色
+$border2: #f1f1f1; // 二级边框颜色
+
+$white: #fff;
+$black: #333;
+$blue: #3190e8;

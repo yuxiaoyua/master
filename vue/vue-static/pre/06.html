@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+      <input v-focus>
+       
+    </template>
+
+
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+
+    <script>
+        Vue.directive("focus", {
+            bind: function() {
+
+            },
+            inserted: function(el) {
+                console.log(el)
+                el.focus()
+            }
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            template: "#root",
+
+
+        })
+    </script>
+</body>
+
+</html>

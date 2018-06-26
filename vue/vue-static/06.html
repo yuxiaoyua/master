@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="tem">
+    <div>
+       <button v-on:click="fn('num')">点击</button>
+       <ul>
+           <li v-for="i in list" @click="fn(i,$event)">{{i.name}}</li>
+       </ul>
+       <form>
+           
+           <button @click.prevent="fnsubmit($event)">提交</button>
+       </form>
+
+       <!--<div @click="go()" :style="{height:'100px',background:'red'}">
+           <button @click.stop="fnsubmit($event)">点击</button>
+       </div>-->
+       <!--<div @click.capture="go()" :style="{height:'100px',background:'red'}">
+           <button @click="fnsubmit($event)">点击</button>
+       </div>-->
+       <div @click.self="go()" :style="{height:'100px',background:'red'}">
+           <button @click="fnsubmit($event)">点击</button>
+           <button @click.once="fnsubmit($event)">点击</button>
+       </div>
+
+
+       <button @keyup.enter="submit()">发送</button>
+       <button @keyup.tab="submit()">发送</button>
+       <button @keyup.delete="submit()">发送</button>
+       <button @keyup.esc="submit()">发送</button>
+       <button @keyup.space="submit()">发送</button>
+       <button @keyup.up="submit()">发送</button>
+       <button @keyup.left="submit()">发送</button>
+       
+
+       <!--<button @click.left="go">左</button>-->
+       <button @scroll.middle="go">中</button>
+       <!--<button @contextmenu="go($event)">右</button>-->
+      
+    </div>
+
+    </template>
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+
+            data: {
+                num: 1,
+                list: [{
+                    id: 1,
+                    name: "zhangsan"
+                }, {
+                    id: 2,
+                    name: "lisi"
+                }, {
+                    id: 3,
+                    name: "wangwu"
+                }, {
+                    id: 4,
+                    name: "maliu"
+                }]
+            },
+
+            methods: {
+                fn(i, e) {
+                    console.log(e)
+                    console.log(i)
+                },
+                fnsubmit(e) {
+                    // e.preventDefault();
+                    console.log("fnsubmit")
+                },
+                go(e) {
+                    e.preventDefault();
+
+                    console.log("go")
+                },
+                submit() {
+                    console.log("submit")
+                }
+            },
+
+
+        })
+    </script>
+</body>
+
+</html>

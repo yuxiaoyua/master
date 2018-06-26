@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            background: yellow;
+            opacity: 0.5
+        }
+        /*.fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+            background: red
+        }*/
+        /*.fade-enter-to,
+        .fade-leave {
+            opacity: 0.5
+            background: green
+        }*/
+        
+        .fade-enter-active {
+            animation: fadeAnimationIn 2s ease-out
+        }
+        
+        .fade-leave-active {
+            /*transition: all 2s;*/
+            animation: fadeAnimationOut 2s ease-out
+        }
+        
+        @keyframes fadeAnimationIn {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.5
+            }
+        }
+        
+        @keyframes fadeAnimationOut {
+            0% {
+                opacity: 0.5
+            }
+            100% {
+                opacity: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+        <div>
+             <button @click="fn">点击</button>
+        <transition name="fade" >
+            <p v-if="state" class="a">天气真好</p>
+        </transition>
+        </div>
+       
+        
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            template: "#tem",
+            data: {
+                state: true
+            },
+            methods: {
+                fn(val) {
+                    this.state = !this.state
+                }
+            },
+
+
+        })
+    </script>
+</body>
+
+</html>

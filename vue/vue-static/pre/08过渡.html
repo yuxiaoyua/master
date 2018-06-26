@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            background: red;
+            width: 300px;
+        }
+        
+        .fades-enter,
+        .fades-leave-to {
+            width: 80px;
+            transform: rotate(360deg)
+            /*opacity: 0;*/
+        }
+        
+        .fades-enter-active,
+        .fades-leave-active {
+            /*background: green;*/
+            /*opacity: 1;*/
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+       <div>
+           <button type="" @click="fn">点击</button>
+           <transition name="fades" >
+                <p v-if="state">天气真好</p>
+           </transition>
+           
+       </div>
+     
+    </template>
+
+
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            template: "#root",
+            data: {
+
+                state: true
+            },
+
+            methods: {
+                fn() {
+                    this.state = !this.state
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

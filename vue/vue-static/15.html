@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .a {
+            background: lightblue
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+      <div>
+        <input-tt></input-tt>
+      </div>
+    </template>
+    <template id="compA">
+        <div>
+ {{msgChild}}
+        </div>
+       
+       
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+
+            template: "#tem",
+
+            data: {
+                msg: 1
+            },
+            mounted() {
+                console.log(this.$children[0].childFn())
+            },
+            components: {
+                inputTt: {
+                    template: "#compA",
+                    data: function() {
+                        return {
+                            msgChild: 2
+                        }
+                    },
+                    methods: {
+                        childFn() {
+                            this.msgChild = "haha"
+                        }
+                    },
+
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

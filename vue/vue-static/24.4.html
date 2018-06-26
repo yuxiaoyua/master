@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <style>
+        .fade-enter-active {
+            animation: fadeIn 3s;
+        }
+        
+        .fade-leave-active {
+            animation: fadeOut 3s;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="tem">
+        <div>
+             <button @click="fn">点击</button>
+        <transition  name="fade" mode="out-in">        
+                    <p v-if="state" style="font-size:'3.5em'" key="1">天气真好</p>
+                     <p v-else style="font-size:'3.5em'" key="2">天气真好啊</p>
+           </transition>
+           
+        </div>
+       
+        
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            template: "#tem",
+            data: {
+                state: true
+            },
+            methods: {
+                fn(val) {
+                    this.state = !this.state
+                },
+
+
+            },
+
+
+
+        })
+    </script>
+</body>
+
+</html>

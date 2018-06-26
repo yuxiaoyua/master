@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <div id="app2">
+
+    </div>
+    <template id="tem">
+      <div class="parent">
+        <slot-cont>
+            <template scope="aa">
+            <span>hello from parent</span>
+            <span>{{ aa.text }}</span>
+            </template>
+    </slot-cont>
+    </div>
+    </template>
+
+    <template id="slotCont">
+       <div class="child">
+        <slot :text="msgChild"></slot>
+        </div>
+    </template>
+
+    <script src="js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var bus = new Vue()
+
+        var vm = new Vue({
+                el: "#app",
+
+                template: "#tem",
+
+                data: {
+                    msgChild: 4
+
+                },
+
+                components: {
+                    slotCont: {
+                        template: "#slotCont",
+                        data: function() {
+                            return {
+                                msgChild: 2
+                            }
+                        }
+
+
+                    },
+
+                }
+
+            })
+            // var vm = new Vue({
+            //     el: "#app2",
+
+        //     template: "#tem2",
+        //     data: {
+
+
+        //     },
+        //     components: {
+        //         slotCont: {
+        //             template: "#slotCont",
+        //             data: function() {
+        //                 return {
+        //                     msgChild: 2
+        //                 }
+        //             }
+
+
+        //         },
+
+        //     }
+
+        // })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+        <div>
+             <keep-alive>
+            <component :is="componentId"></component>
+            </keep-alive>
+            <button type="" @click="fn">点击</button>
+        </div>
+       
+    </template>
+    <template id="a">
+        <div>a</div>
+    </template>
+    <template id="b">
+        <div>b</div>
+    </template>
+    <template id="c">
+        <div>c</div>
+    </template>
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+    <script src=""></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#root",
+            components: {
+                appa: {
+                    template: "#a",
+                    activate() {
+                        console.log(11)
+                    }
+                },
+                appb: {
+                    template: "#b",
+                    activate() {
+                        console.log(22)
+                    }
+                },
+                appc: {
+                    template: "#c",
+                    activate() {
+                        console.log(33)
+                    }
+                }
+            },
+            data: {
+                componentId: "appa"
+            },
+
+            methods: {
+                fn() {
+                    this.componentId = "appb"
+                }
+            },
+            mounted() {
+
+
+            },
+
+        })
+    </script>
+</body>
+
+</html>

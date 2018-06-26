@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!--<div>{{name}} {{age}}</div>
+        <button type="" v-on:click="fn">点击</button>-->
+
+
+    </div>
+
+    <template id="tem">
+      <div>
+        <p>{{name}}</p>
+        <p>{{age}}</p> 
+        <div v-text="name"></div>
+        <div v-html="htmls"></div>
+        <!--<div v-show="state==true">你好啊</div>-->
+        <div v-if="state">挺好的</div>
+        <div v-else-if="state1">还行</div>
+        <div v-else>不好啊</div>
+        <ul>
+          <li v-for="(i, index) in list">{{index}}--{{i}}</li>
+        </ul>
+        <ul>
+          <li v-for="i in 10">{{i}}</li>
+        </ul>
+        <button v-bind:class="classname" @click="fn(1)">点击</button>
+        <input type="" name="" value="" v-model="model">
+        <span v-once>{{name}}</span>
+      </div>
+     
+    </template>
+    <!--<main id="tem">
+        <div>{{name}}
+            <p>{{age}}</p>
+        </div>
+    </main>-->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/common/vue2.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            template: "#tem",
+            data: {
+                name: "zhangsan",
+                age: 13,
+                state: true,
+                state1: true,
+                htmls: "<div>天哪</div>",
+                list: [
+                    "上", "山", "打", "老", "虎"
+                ],
+                classname: "a",
+                model: ""
+            },
+            methods: {
+                fn(i) {
+                    console.log(i)
+                    console.log(this.model)
+                }
+            },
+            beforeCreate() {
+                console.log("beforeCreate")
+            },
+            created() {
+                console.log("created")
+            },
+            beforeMount() {
+                console.log("beforeMount")
+            },
+            mounted() {
+                console.log("mounted")
+            },
+            updated() {
+                console.log("updated")
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy")
+                    // this.
+            },
+            destroyed() {
+                console.log("destroyed")
+            }
+        })
+        console.log(vm)
+            // vm = {}
+
+        setTimeout(function() {
+            // vm.$set("state", 1)
+            vm.$destroy()
+            vm.$data.state = false
+            vm.$data.name = "lisi"
+        }, 1000)
+    </script>
+</body>
+
+</html>

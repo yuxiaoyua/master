@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <style>
+        .red {
+            background: red;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <ul>
+            <template v-for="(item,index) in list">
+                    <li>{{ item }}</li>
+                    <li>{{index}}</li>
+            </template>
+        </ul>
+    </div>
+    <!--<template id="tem">-->
+    <!--<div>-->
+    <!--<div v-if="state">
+                <label>Username</label>
+                <input placeholder="Enter your username" key="usename">
+            </div>
+            <div v-else>
+                <label>Email</label>
+                <input placeholder="Enter your email address" key="email">
+            </div>-->
+
+    <!--<section v-if="state2">
+                     <p>这里显示的是if</p>
+            </section>
+            <section v-show="state2">
+                <p>这里显示的是show</p>
+            </section>-->
+
+
+    <!--<ul>
+                <li v-for="(i,index) in list" >{{index}}-{{i}}</li>
+            </ul>
+
+            <ul>
+                <li v-for="(i,index) of list" >{{index}}-{{i}}</li>
+            </ul>-->
+    <!--</div>-->
+
+    <!--</template>-->
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="js/common/vue2.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            // template: "<div v-if='state'>{{name}}</div>",
+            // template: "#tem",
+            data: {
+                state: true,
+                state2: false,
+                list: [
+                    1, 2, 3, 4, 5, 6, 7, 8
+                ]
+
+            },
+
+
+        })
+        setInterval(function() {
+            vm.state = !vm.state
+        }, 1000)
+    </script>
+</body>
+
+</html>

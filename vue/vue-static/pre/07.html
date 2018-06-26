@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+    <template id="root">
+        <ul>
+            <li v-focus:test="namedata">
+                <label for="name">姓名</label>
+                <input  v-model.lazy="name" v-if="state" id="name" >
+                <p style="color:red;display:none">{{namedata.msg}}</p>
+            </li>
+             <li v-focus:test="phonedata">
+                <label for="phone">手机号</label>
+                <input  v-model.lazy="phone" v-if="state" id="phone">
+                <p style="color:red;display:none">{{phonedata.msg}}</p>
+            </li>
+            <li><button @click="fn">提交</button></li>
+       <!--<div v-dom>{{name}}</div>-->
+        </ul>
+     
+    </template>
+
+
+
+    <!--<script src="https://unpkg.com/vue"></script>-->
+    <script src="../js/common/vue2.js"></script>
+
+    <script>
+        Vue.directive("focus", {
+            bind: function(el, binding) {
+                console.log(binding.value.state)
+                    // el.innerHTML += `<p style="color:red;display:none"></p>`
+            },
+            inserted: function(el) {
+                console.log(el)
+                console.log("inserted")
+                    // el.focus()
+            },
+            update() {
+                console.log("update")
+            },
+            componentUpdated(el, binding, vnode, oldVnode) {
+                console.log(el.getElementsByTagName("p")[0])
+                var $p = el.getElementsByTagName("p")[0]
+
+                if (binding.arg == "test") {
+                    console.log(binding.value.regex.test(binding.value.val))
+                    if (binding.value.val != "") {
+                        if (binding.value.regex.test(binding.value.val)) {
+                            $p.style.display = "none"
+                        } else {
+                            $p.style.display = "block"
+
+                            // el.innerHTML += `<p :style="{color:'red'}" v-if="binding.value.state">${binding.value.msg}</p>`
+                        }
+                    } else {
+                        $p.style.display = "none"
+                    }
+
+                }
+
+
+
+
+
+
+
+
+
+
+                // console.log(el)
+                // console.log("---------------------------")
+                // console.log(binding.name)
+                // console.log(binding.value)
+                // console.log(binding.oldValue)
+                // console.log(binding.expression)
+                // console.log(binding.arg)
+                // console.log(binding.modifiers)
+                // console.log("---------------------------")
+                // console.log(vnode)
+                // console.log(oldVnode)
+                //     // console.log(el)
+                // console.log("componentUpdated")
+            },
+            unbind() {
+                console.log("unbind")
+            }
+        })
+        Vue.directive("dom", {
+            bind: function() {
+                console.log("bind")
+            },
+            inserted: function(el) {
+                console.log(el)
+                console.log("inserted")
+
+            },
+            update() {
+                console.log("update")
+            },
+            componentUpdated() {
+                console.log("componentUpdated")
+            },
+            unbind() {
+                console.log("unbind")
+            }
+        })
+        var vm = new Vue({
+            el: "#app",
+            template: "#root",
+            data: {
+                name: "",
+                phone: "",
+                state: true
+            },
+            computed: {
+                namedata: function() {
+                    return {
+                        val: this.name,
+                        regex: /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/,
+                        msg: "你输入的用户名格式不正确",
+                    }
+                },
+                phonedata: function() {
+                    return {
+                        val: this.phone,
+                        regex: /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$/,
+                        msg: "你输入的手机号格式不正确",
+                    }
+                }
+            },
+            methods: {
+                fn() {
+                    console.log(this.$el.getElementsByTagName("p"))
+                    var $p = this.$el.getElementsByTagName("p")
+                        // for(var i=0;i<$p.length;i++){
+                        //     $p.uptest=""
+                        // }
+                }
+            },
+            mounted() {
+                console.log(this.fn())
+            }
+
+        })
+    </script>
+</body>
+
+</html>
